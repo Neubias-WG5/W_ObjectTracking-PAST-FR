@@ -30,7 +30,7 @@ ADD plugins /app/plugins
 ADD update /app/update
 ADD icy.jar /app/icy.jar
 ADD resources.jar /app/resources.jar
-ADD "Fluo-N2DH-SIM+-01.protocol" "/app/Fluo-N2DH-SIM+-01.protocol"
+ADD data-in.protocol /app/data-in.protocol
 
 ADD wrapper.py /app/wrapper.py
 ADD descriptor.json /app/descriptor.json
