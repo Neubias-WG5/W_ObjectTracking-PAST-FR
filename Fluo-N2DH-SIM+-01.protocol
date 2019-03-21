@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<protocol VERSION="4">
+<blocks>
+<block ID="886030991" blockType="plugins.adufour.ctc.CTCInput" className="plugins.adufour.ctc.CTCInput" collapsed="false" definedName="CTC input" height="83" keepsResults="true" width="203" xLocation="61" yLocation="35">
+<variables>
+<input>
+<variable ID="input" name="Input data" runtime="false" visible="true"/>
+<variable ID="output" name="Result folder" runtime="false" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="2072316360" blockType="plugins.adufour.ctc.ReadCTCData" className="plugins.adufour.ctc.ReadCTCData" collapsed="false" definedName="Read CTC data" height="83" keepsResults="true" width="194" xLocation="73" yLocation="134">
+<variables>
+<input>
+<variable ID="input folder" name="Folder" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="sequence" name="Sequence" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="1156061531" blockType="plugins.adufour.sequenceutil.StabilizeIntensity" className="plugins.adufour.sequenceutil.StabilizeIntensity" collapsed="false" definedName="Stabilize intensity" height="127" keepsResults="true" width="215" xLocation="65" yLocation="232">
+<variables>
+<input>
+<variable ID="sequence" name="Sequence" runtime="false" visible="true"/>
+<variable ID="min. pct." name="Min % [0,1]" runtime="false" value="0.01" visible="true"/>
+<variable ID="max. pct." name="Max % [0,1]" runtime="false" value="0.99" visible="true"/>
+</input>
+<output>
+<variable ID="output" name="Stabilized sequence" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="82600161" blockType="plugins.adufour.filtering.SelectionFilterBlock" className="plugins.adufour.filtering.SelectionFilterBlock" collapsed="false" definedName="Selection filter" height="171" keepsResults="true" width="225" xLocation="307" yLocation="226">
+<variables>
+<input>
+<variable ID="input sequence" name="input sequence" runtime="false" visible="true"/>
+<variable ID="filter" name="filter" runtime="false" value="plugins.adufour.filtering.Median" visible="true"/>
+<variable ID="filter radius (X)" name="filter radius (X)" runtime="false" value="2" visible="true"/>
+<variable ID="filter radius (Y)" name="filter radius (Y)" runtime="false" value="2" visible="true"/>
+<variable ID="filter radius (Z)" name="filter radius (Z)" runtime="false" value="0" visible="true"/>
+</input>
+<output>
+<variable ID="filtered sequence" name="filtered sequence" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="1240195325" blockType="plugins.tprovoost.sequenceblocks.extract.ExtractTime" className="plugins.tprovoost.sequenceblocks.SequenceBlocks" collapsed="false" definedName="Extract time" height="105" keepsResults="true" width="187" xLocation="73" yLocation="416">
+<variables>
+<input>
+<variable ID="sequence" name="sequence" runtime="false" visible="true"/>
+<variable ID="T pos" name="T pos" runtime="false" value="0" visible="true"/>
+</input>
+<output>
+<variable ID="extracted" name="extracted" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="1142446397" blockType="plugins.adufour.filtering.GaussianFilter" className="plugins.adufour.filtering.FilterToolbox" collapsed="false" definedName="Gaussian filter" height="150" keepsResults="true" width="194" xLocation="325" yLocation="419">
+<variables>
+<input>
+<variable ID="input" name="input" runtime="false" visible="true"/>
+<variable ID="filterX" name="sigma (x)" runtime="false" value="4.0" visible="true"/>
+<variable ID="filterY" name="sigma (y)" runtime="false" value="4.0" visible="true"/>
+<variable ID="filterZ" name="sigma (z)" runtime="false" value="0.0" visible="true"/>
+</input>
+<output>
+<variable ID="output" name="output" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="1132921268" blockType="plugins.adufour.hierarchicalkmeans.HierarchicalKMeans" className="plugins.adufour.hierarchicalkmeans.HierarchicalKMeans" collapsed="false" definedName="HK-Means" height="237" keepsResults="true" width="234" xLocation="312" yLocation="586">
+<variables>
+<input>
+<variable ID="Input" name="Input" runtime="false" visible="true"/>
+<variable ID="Gaussian pre-filter" name="Gaussian pre-filter" runtime="false" value="0.0" visible="true"/>
+<variable ID="Min size (px)" name="Min size (px)" runtime="false" value="100" visible="true"/>
+<variable ID="Max size (px)" name="Max size (px)" runtime="false" value="3000" visible="true"/>
+<variable ID="Number of classes" name="Number of classes" runtime="false" value="10" visible="true"/>
+<variable ID="Final threshold" name="Final threshold" runtime="false" value="0.0" visible="true"/>
+</input>
+<output>
+<variable ID="binary sequence" name="binary sequence" runtime="false" visible="true"/>
+<variable ID="output objects" name="objects" runtime="false" visible="true"/>
+<variable ID="output regions" name="list of ROI" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="157725829" blockType="plugins.adufour.activecontours.ActiveContours" className="plugins.adufour.activecontours.ActiveContours" collapsed="false" definedName="Active Contours" height="523" keepsResults="true" width="255" xLocation="602" yLocation="240">
+<variables>
+<input>
+<variable ID="input sequence" name="Input" runtime="false" visible="true"/>
+<variable ID="Input ROI" name="input ROI" runtime="false" visible="true"/>
+<variable ID="regularization: weight" name="Contour smoothness" runtime="false" value="0.04" visible="false"/>
+<variable ID="edge: weight" name="Edge weight" runtime="false" value="0.0" visible="false"/>
+<variable ID="edge: channel" name="Find edges in channel" runtime="false" value="0" visible="false"/>
+<variable ID="region: weight" name="Region weight" runtime="false" value="1.0" visible="false"/>
+<variable ID="region: sensitivity" name="Region sensitivity" runtime="false" value="1.4" visible="false"/>
+<variable ID="region: channel" name="Find regions in channel" runtime="false" value="0" visible="false"/>
+<variable ID="balloon: weight" name="Contour inflation" runtime="false" value="0.0" visible="false"/>
+<variable ID="contour resolution" name="Contour sampling" runtime="false" value="3.0" visible="true"/>
+<variable ID="region bounds" name="Bound field to ROI of" runtime="false" value="No Sequence" visible="true"/>
+<variable ID="time step" name="Evolution time step" runtime="false" value="0.5" visible="true"/>
+<variable ID="convergence value" name="Convergence criterion" runtime="false" value="0.05" visible="true"/>
+<variable ID="max. iterations" name="Max. iterations" runtime="false" value="5000" visible="true"/>
+<variable ID="type of ROI output" name="Type of ROI" runtime="false" value="AREA" visible="true"/>
+<variable ID="tracking" name="Track objects over time" runtime="false" value="true" visible="true"/>
+<variable ID="division sensitivity" name="Division sensitivity" runtime="false" value="0.1" visible="true"/>
+<variable ID="volume constraint" name="Volume constraint" runtime="false" value="false" visible="true"/>
+<variable ID="watch entering objects" name="Watch entering objects" runtime="false" value="true" visible="true"/>
+</input>
+<output>
+<variable ID="Regions of interest" name="Regions of interest" runtime="false" visible="true"/>
+<variable ID="Tracks" name="Tracks" runtime="false" visible="true"/>
+<variable ID="Labels" name="Labels" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="1566046309" blockType="plugins.adufour.ctc.ExportCTCResults" className="plugins.adufour.ctc.ExportCTCResults" collapsed="false" definedName="Export CTC results" height="105" keepsResults="true" width="245" xLocation="975" yLocation="125">
+<variables>
+<input>
+<variable ID="dim" name="Sequence dimensions" runtime="false" visible="true"/>
+<variable ID="tracks" name="Tracks" runtime="false" visible="true"/>
+<variable ID="folder" name="Export folder" runtime="false" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+</blocks>
+<links>
+<link dstBlockID="1132921268" dstVarID="Input" srcBlockID="1142446397" srcVarID="output"/>
+<link dstBlockID="2072316360" dstVarID="input folder" srcBlockID="886030991" srcVarID="input"/>
+<link dstBlockID="1566046309" dstVarID="folder" srcBlockID="886030991" srcVarID="output"/>
+<link dstBlockID="1156061531" dstVarID="sequence" srcBlockID="2072316360" srcVarID="sequence"/>
+<link dstBlockID="82600161" dstVarID="input sequence" srcBlockID="1156061531" srcVarID="output"/>
+<link dstBlockID="157725829" dstVarID="input sequence" srcBlockID="82600161" srcVarID="filtered sequence"/>
+<link dstBlockID="157725829" dstVarID="Input ROI" srcBlockID="1132921268" srcVarID="output regions"/>
+<link dstBlockID="1566046309" dstVarID="dim" srcBlockID="157725829" srcVarID="input sequence"/>
+<link dstBlockID="1566046309" dstVarID="tracks" srcBlockID="157725829" srcVarID="Tracks"/>
+<link dstBlockID="1240195325" dstVarID="sequence" srcBlockID="82600161" srcVarID="filtered sequence"/>
+<link dstBlockID="1142446397" dstVarID="input" srcBlockID="1240195325" srcVarID="extracted"/>
+</links>
+</protocol>
