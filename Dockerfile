@@ -13,7 +13,7 @@ RUN rm -r /Cytomine-python-client
 # ---------------------------------------------------------------------------------------------------------------------
 # Install Neubias-W5-Utilities (annotation exporter, compute metrics, helpers,...)
 RUN git clone https://github.com/Neubias-WG5/neubiaswg5-utilities.git && \
-       cd /neubiaswg5-utilities/ && git checkout tags/v0.6.5 && pip install .
+       cd /neubiaswg5-utilities/ && git checkout tags/v0.6.6 && pip install .
 
 # install utilities binaries
 RUN chmod +x /neubiaswg5-utilities/bin/*
@@ -30,7 +30,7 @@ ADD plugins /app/plugins
 ADD update /app/update
 ADD icy.jar /app/icy.jar
 ADD resources.jar /app/resources.jar
-ADD data-in.protocol /app/data-in.protocol
+ADD proto.protocol /app/proto.protocol
 
 ADD wrapper.py /app/wrapper.py
 ADD descriptor.json /app/descriptor.json
