@@ -41,7 +41,8 @@ def main(argv):
 
         # DEBUG copy ground truth in output
         for file in os.listdir(gt_path):
-            shutil.copy(os.path.join(gt_path, file), out_path)
+            outfile = file.replace("_attached", "") if file.endswith(".txt") else file
+            shutil.copy(os.path.join(gt_path, file), os.path.join(out_path, outfile))
 
         # 4. Upload the annotation and labels to Cytomine
         upload_data(problem_cls, nj, in_images, out_path, **nj.flags, is_2d=is_2d, monitor_params={
